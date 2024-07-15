@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> table, th, td {border: 1px solid black}
+</style>
+</head>
+
+<body>
+
 <h1>List of all movies</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+  </tr>
+  
+<%x = 0%>
+<%m = Movie.all%>
+
+<%Movie.count.times do %>
+  <tr>
+    <td><%=m.at(x).id%></td>
+    <td><img src = "<%=m.at(x).image%>" alt = "" style="height:300px;"></td>
+    <td><%=m.at(x).title%></td>
+    <td><%=m.at(x).year%></td>
+    <%d = Director.where({:id => m.at(x).director_id})%>
+    <td><%=d.at(0).name%></td>
+    <td><a href = "/movies/<%=m.at(x).id%>">Show details</a></td>
+  </tr>
+  <% x = x + 1%>
+<%end%>
+
+</table>
+
+
+</body>
+</html>
