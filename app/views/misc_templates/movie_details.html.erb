@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> table, th, td {border: 1px solid black}
+</style>
+</head>
+
+<body>
+
+<h1> Movie #<%=@movie_id%> details </h1>
+
+<a href = "/movies">Go back</a>
+<hr />
+
+<%m = Movie.where({:id => @movie_id}).at(0)%>
+
+<p>Title 
+<br> <%=m.title%></p>
+
+<p>Year 
+<br> <%=m.year%></p>
+
+<p>Duration
+<br> <%=m.duration%></p>
+
+<p>Description
+<br> <%=m.description%></p>
+
+<p>Image
+<br> <img src = "<%=m.image%>" alt = "" style="height:300px;"></p>
+
+<p>Director
+<%d = Director.where({:id => m.director_id})%>
+<br><%=d.at(0).name%></p>
+
+<p>Created at 
+<br> <%=m.created_at%></p>
+
+<p>Updated at 
+<br> <%=m.updated_at%></p>
+
+</body>
+</html>

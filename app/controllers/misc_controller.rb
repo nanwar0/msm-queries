@@ -27,4 +27,14 @@ class MiscController < ApplicationController
     @director_id = params.fetch("id").to_s
     render({ :template => "misc_templates/director_details"})
   end
+
+  def actor_details
+    @actor_id = params.fetch("id").to_s
+    render({ :template => "misc_templates/actor_details"})
+  end
+
+  def movie_details
+    @movie_id = params.fetch("id").to_s
+    render({ :template => "misc_templates/movie_details"})
+  end
 end
