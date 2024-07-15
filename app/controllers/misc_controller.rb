@@ -22,4 +22,9 @@ class MiscController < ApplicationController
   def all_actors
     render({ :template => "misc_templates/all_actors"})
   end
+
+  def director_details
+    @director_id = params.fetch("id").to_s
+    render({ :template => "misc_templates/director_details"})
+  end
 end

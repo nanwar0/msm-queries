@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> table, th, td {border: 1px solid black}
+</style>
+</head>
+
+<body>
+
+<h1> Director #<%=@director_id%> details </h1>
+
+<a href = "/directors">Go back</a>
+<hr />
+
+<%d = Director.where({:id => @director_id}).at(0)%>
+
+<p>Name 
+<br> <%=d.name%></p>
+
+<p>Dob 
+<br> <%=d.dob%></p>
+
+<p>Bio 
+<br> <%=d.bio%></p>
+
+<p>Image
+<br> <img src = "<%=d.image%>" alt = "" style="height:300px;"></p>
+
+<p>Created at 
+<br> <%=d.created_at%></p>
+
+<p>Updated at 
+<br> <%=d.updated_at%></p>
+
+<hr />
+
+<h2>Filmography</h2>
+<%m = Movie.where({:director_id => @director_id})%>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th></th>
+  </tr>
+  
+<%x = 0%>
+
+<%m.count.times do %>
+  <tr>
+    <td><%=m.at(x).id%></td>
+    <td><img src = "<%=m.at(x).image%>" alt = "" style="height:300px;"></td>
+    <td><%=m.at(x).title%></td>
+    <td><%=m.at(x).year%></td>
+    <%d = Director.where({:id => m.at(x).director_id})%>
+    <td><%=d.at(0).name%></td>
+    <td><a href = "/movies/<%=m.at(x).id%>">Show details</a></td>
+  </tr>
+  <% x = x + 1%>
+<%end%>
+
+</table>
+</body>
+</html>
