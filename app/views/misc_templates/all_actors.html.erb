@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> table, th, td {border: 1px solid black}
+</style>
+</head>
+
+<body>
+
 <h1>List of all actors</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>DOB</th>
+    <th></th>
+  </tr>
+  
+<%x = 0%>
+<%a = Actor.all%>
+
+<%Actor.count.times do %>
+  <tr>
+    <td><%=a.at(x).id%></td>
+    <td><img src = "<%=a.at(x).image%>" alt = "" style="height:300px;"></td>
+    <td><%=a.at(x).name%></td>
+    <td><%=a.at(x).dob%></td>
+    <td><a href = "/actors/<%=a.at(x).id%>">Show details</a></td>
+  </tr>
+  <% x = x + 1%>
+<%end%>
+
+</table>
+
+
+</body>
+</html>
