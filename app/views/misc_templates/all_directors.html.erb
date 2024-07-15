@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> table, th, td {border: 1px solid black}
+</style>
+</head>
+
+<body>
+
 <h1>List of all directors</h1>
 
 <table>
@@ -8,14 +17,23 @@
     <th>DOB</th>
     <th></th>
   </tr>
-<%3.times do %>
+  
+<%x = 0%>
+<%d = Director.all%>
+
+<%Director.count.times do %>
   <tr>
-    <td><%=rand(1..5)%></td>
-    <td><%=rand(1..5)%></td>
-    <td><%=rand(1..5)%></td>
-    <td><%=rand(1..5)%></td>
-    <td><%=rand(1..5)%></td>
+    <td><%=d.at(x).id%></td>
+    <td><img src = "<%=d.at(x).image%>" alt = "" style="height:300px;"></td>
+    <td><%=d.at(x).name%></td>
+    <td><%=d.at(x).dob%></td>
+    <td><a href = "/directors/<%=d.at(x).id%>">Show details</a></td>
   </tr>
+  <% x = x + 1%>
 <%end%>
 
 </table>
+
+
+</body>
+</html>
